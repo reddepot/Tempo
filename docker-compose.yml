@@ -1,0 +1,20 @@
+services:
+  tempo:
+    build: .
+    container_name: tempo
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./data:/data
+
+  # Optionnel : passerelle Signal (décommenter si SIGNAL_* est utilisé)
+  # signal-api:
+  #   image: bbernhard/signal-cli-rest-api:latest
+  #   container_name: signal-api
+  #   restart: unless-stopped
+  #   environment:
+  #     - MODE=json-rpc
+  #   ports:
+  #     - "8080:8080"
+  #   volumes:
+  #     - ./signal:/home/.local/share/signal-cli
